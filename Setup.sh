@@ -103,9 +103,14 @@ echo -e "\033[32m +++++日志已保存到/backup/+++++ \033[0m"
 if [ -e "/backup/config" ];then
 	echo " 
   0. 更新配置
-  1. 备份网页
-  2. 备份数据库
-  3. 同时备份
+  +----------------Manual-------------+
+  			  1. 备份网页		
+         	  2. 备份数据库		
+         	  3. 同时备份	    
+  +--------------automatic------------+	
+  			  4. 创建计划任务
+  +-----------------------------------+
+
  " && echo
  stty erase '^H' && read -p " 请输入数字 [0-3]:" num
 case "$num" in
@@ -125,6 +130,9 @@ case "$num" in
 	backup_web
 	backup_MySQL
 	;;
+	4)
+ 	exec ./autobackup.sh
+ 	;;
 	*)
 	echo "请输入正确数字 [0-10]"
 	;;
