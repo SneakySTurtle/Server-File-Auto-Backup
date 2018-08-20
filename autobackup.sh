@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-export PATH
+#!/bin/bash
 
 day=$(cat /backup/config | grep "day" | cut -d ":" -f 2)
 FTPIP=$(cat /backup/config | grep "FTPIP" | cut -d ":" -f 2)
