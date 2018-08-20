@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 day=$(cat /backup/config | grep "day" | cut -d ":" -f 2)
 FTPIP=$(cat /backup/config | grep "FTPIP" | cut -d ":" -f 2)
