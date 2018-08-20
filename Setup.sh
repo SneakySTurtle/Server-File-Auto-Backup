@@ -6,7 +6,7 @@ echo "|                     Database Support:MySQL                             |
 echo "+------------------------------------------------------------------------+"
 echo "|       A tool to auto-compress & auto-upload data to FTP server         |"
 echo "+------------------------------------------------------------------------+"
-echo "|                     Author: SneakyTurtle Jindom                        |"
+echo "|                     Authors: SneakyTurtle Jindom                       |"
 echo "|                     Version: 1.0.0                                     |"
 echo "+------------------------------------------------------------------------+"
 
