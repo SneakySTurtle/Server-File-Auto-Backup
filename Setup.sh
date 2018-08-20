@@ -31,7 +31,7 @@ Set_Info(){
 	read -p "MySQL Pwd:" databasepass
 	echo "Please enter a location you want save in your FTP Server(eg:/share/backup):"
 	read -p "Located in:" sdir
-	echo "Please enter the location of the files you want backup(eg:/user/xxx):"
+	echo "Please enter the location of the Web files you want backup(eg:/user/xxx):"
 	read -p "Located in::" dir1
 	echo "Please enter the name of Database:"
 	read -p "Database Named:" databasename1
@@ -102,12 +102,12 @@ echo -e "\033[32m +++++log file save in /backup/+++++ \033[0m"
 if [ -e "/backup/config" ];then
 	echo " 
   +----------------Manual---------------+
- 		 0. 更新配置
-  		 1. 备份网页		
-         	 2. 备份数据库		
-         	 3. 同时备份	    
-  +--------------automatic--------------+	
-  		 4. 创建计划任务
+ 		 0. Update Config
+  		 1. Backup Web		
+         	 2. Backup MySQL		
+         	 3. Backup both at same time	    
+  +--------------Automatic--------------+	
+  		 4. Auto Backup
   +-------------------------------------+
 
  " && echo
@@ -139,5 +139,5 @@ case "$num" in
 esac
 else
 	Build
-	echo "检测为初次运行，路径生成完毕，请重新运行脚本"
+	echo "Detected it's your  first run, the path is generated, please re-run the script"
 fi
