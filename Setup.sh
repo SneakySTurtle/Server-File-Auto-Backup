@@ -139,5 +139,6 @@ case "$num" in
 esac
 else
 	Build
-	echo "Detected it's your  first run, the path is generated, please re-run the script"
+	echo "Detected it's your  first run, the path is generated, please enter some information down below and re-run the script"
+	Set_Info
 fi
