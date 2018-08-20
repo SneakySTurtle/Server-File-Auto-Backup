@@ -131,10 +131,11 @@ case "$num" in
 	backup_MySQL
 	;;
 	4)
+	chmod -R 755 ./autobackup.sh
  	exec ./autobackup.sh
  	;;
 	*)
-	echo "请输入正确数字 [0-10]"
+	echo "请输入正确数字 [0-4]"
 	;;
 esac
 else
