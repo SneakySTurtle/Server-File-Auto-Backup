@@ -137,8 +137,8 @@ case "$num" in
 	echo "ERROR Input [0-4]"
 	;;
 esac
-else
-	Build
+else	
 	echo "Detected that it's your first time run this script, please enter some information down below and re-run the script. "
 	Set_Info
+	Build
 fi
