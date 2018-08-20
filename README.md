@@ -1,4 +1,4 @@
-# Server-File-Auto-Backup
-auto compress the specified file and the specified database then upload to the specified FTP server
-# CentOS support only
-# MySQL support only
+# LNMP Auto Backup Web And MySQL Files
+1.Test only in the CentOS with LNMP
+# CentOS Support Only
+# MySQL Support Only
