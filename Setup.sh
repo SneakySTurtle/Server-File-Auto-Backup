@@ -111,7 +111,7 @@ if [ -e "/backup/config" ];then
   +----------------------------------------------+
 
  " && echo
- stty erase '^H' && read -p " Pls enter a number [0-3]:" num
+ stty erase '^H' && read -p " Pls enter a number [0-4]:" num
 case "$num" in
 	0)
 	Set_Info
