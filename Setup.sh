@@ -139,6 +139,6 @@ case "$num" in
 esac
 else	
 	echo "Detected that it's your first time run this script, please enter some information down below and re-run the script. "
-	Set_Info
 	Build
+	Set_Info
 fi
