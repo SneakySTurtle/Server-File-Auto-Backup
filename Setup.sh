@@ -17,24 +17,24 @@ touch /backup/config
 
 
 Set_Info(){
-	echo "请输入自动备份任务的执行周期(以天为单位):"
-	read -p "自动备份周期天数:" day
-	echo "请输入你的FTP服务器IP地址(例如182.148.157.246):"
-	read -p "FTP服务器IP:" FTPIP
-	echo "请输入你的FTP服务器端口(例如21):"
-	read -p "FTP服务器端口:" FTPPORT
-	echo "请输入你的FTP服务器的用户名和密码(例如admin password):"
-	read -p "FTP用户名密码:" USERPASSWD
-	echo "请输入你的数据库用户名(例如root):"
-	read -p "数据库用户名:" databaseuser
-	echo "请输入你的数据库密码(例如password):"
-	read -p "数据库密码:" databasepass
-	echo "请输入你想要保存文档到FTP服务器的何位置(例如/share/backup):"
-	read -p "FTP服务器路径:" sdir
-	echo "请输入你需要备份的目录(例如/root/data):"
-	read -p "备份目录路径:" dir1
-	echo "请输入你需要备份的数据库名(例如wordpress):"
-	read -p "数据库名称:" databasename1
+	echo "Please enter the cycle time(/per day):"
+	read -p "Cycle Time:" day
+	echo "Please enter your FTP Server IP:"
+	read -p "IP:" FTPIP
+	echo "Please enter your FTP Port:"
+	read -p "FTP Port:" FTPPORT
+	echo "Please enter your FTP account and password(Separate with spaces eg:user password):"
+	read -p "FTP account and password:" USERPASSWD
+	echo "Please enter your MySQL user:"
+	read -p "MySQL User:" databaseuser
+	echo "Please enter you MySQL Pwd:"
+	read -p "MySQL Pwd:" databasepass
+	echo "Please enter a location you want save in your FTP Server(eg:/share/backup):"
+	read -p "Located in:" sdir
+	echo "Please enter the location of the files you want backup(eg:/user/xxx):"
+	read -p "Located in::" dir1
+	echo "Please enter the name of Database:"
+	read -p "Database Named:" databasename1
 	echo "day:"$day >> /backup/config
 	echo "FTPIP:"$FTPIP >> /backup/config
 	echo "FTPPORT:"$FTPPORT >> /backup/config
@@ -44,7 +44,6 @@ Set_Info(){
 	echo "sdir:"$sdir >> /backup/config
 	echo "dir1:"$dir1 >> /backup/config
 	echo "databasename1:"$databasename1 >> /backup/config
-	echo -e "\033[32m +++++初始化信息已保存到/backup/config+++++ \033[0m"
 }
 
 Load_InFo(){
@@ -61,12 +60,12 @@ Load_InFo(){
 }
 
 backup_web(){
-echo -e "\033[31m +++++开始备份网页文件数据+++++ \033[0m"
+echo -e "\033[31m +++++Starting backup+++++ \033[0m"
 
 cd /
 tar -cvf $dir1"_"$date.tar $dir1 >> /dev/null
 
-echo -e "\033[31m +++++开始上传网页文件数据+++++ \033[0m"
+echo -e "\033[31m +++++Uploading files+++++ \033[0m"
 ftp -A -n<<EOF
 open $FTPIP $FTPPORT
 user $USERPASSWD
@@ -77,14 +76,14 @@ mput $dir1"_"$date.tar
 close
 bye
 EOF
-echo -e "\033[31m +++++上传完成，清理环境+++++ \033[0m"
+echo -e "\033[31m +++++Done & clean+++++ \033[0m"
 rm -rf $dir1"_"$date.tar
 }
 
 backup_MySQL(){
-echo -e "\033[31m +++++开始备份数据库数据+++++ \033[0m"
+echo -e "\033[31m +++++Starting backup+++++ \033[0m"
 mysqldump -u$databaseuser -p$databasepass -h127.0.0.1 $databasename1 > /$databasename1"_"$date.dump
-echo -e "\033[31m +++++开始上传数据库数据+++++ \033[0m"
+echo -e "\033[31m +++++Uploading files+++++ \033[0m"
 ftp -A -n<<EOF
 open $FTPIP $FTPPORT
 user $USERPASSWD
@@ -95,24 +94,24 @@ mput $databasename1"_"$date.dump
 close
 bye
 EOF
-echo -e "\033[31m +++++数据上传完成，清理数据+++++ \033[0m"
+echo -e "\033[31m +++++Done & Clean+++++ \033[0m"
 rm -rf $databasename1"_"$date.dump
-echo -e "\033[32m +++++日志已保存到/backup/+++++ \033[0m"
+echo -e "\033[32m +++++log file save in /backup/+++++ \033[0m"
 }
 
 if [ -e "/backup/config" ];then
 	echo " 
-  0. 更新配置
-  +----------------Manual-------------+
-  			  1. 备份网页		
-         	  2. 备份数据库		
-         	  3. 同时备份	    
-  +--------------automatic------------+	
-  			  4. 创建计划任务
-  +-----------------------------------+
+  +----------------Manual---------------+
+ 		 0. 更新配置
+  		 1. 备份网页		
+         	 2. 备份数据库		
+         	 3. 同时备份	    
+  +--------------automatic--------------+	
+  		 4. 创建计划任务
+  +-------------------------------------+
 
  " && echo
- stty erase '^H' && read -p " 请输入数字 [0-3]:" num
+ stty erase '^H' && read -p " Pls enter a number [0-3]:" num
 case "$num" in
 	0)
 	Set_Info
@@ -135,7 +134,7 @@ case "$num" in
  	exec ./autobackup.sh
  	;;
 	*)
-	echo "请输入正确数字 [0-4]"
+	echo "ERROR Input [0-4]"
 	;;
 esac
 else
