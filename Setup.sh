@@ -101,14 +101,14 @@ echo -e "\033[32m +++++log file save in /backup/+++++ \033[0m"
 
 if [ -e "/backup/config" ];then
 	echo " 
-  +----------------Manual---------------+
+  +----------------Manual------------------------+
  		 0. Update Config
   		 1. Backup Web		
          	 2. Backup MySQL		
          	 3. Backup both at same time	    
-  +--------------Automatic--------------+	
+  +--------------Automatic-----------------------+	
   		 4. Auto Backup
-  +-------------------------------------+
+  +----------------------------------------------+
 
  " && echo
  stty erase '^H' && read -p " Pls enter a number [0-3]:" num
